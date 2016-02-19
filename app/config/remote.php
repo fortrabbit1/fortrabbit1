@@ -29,12 +29,12 @@ return array(
 	'connections' => array(
 
 		'production' => array(
-			'host'      => '159.203.122.107',
-			'username'  => 'master_deaednfsag',
-			'password'  => 'G2qAEjdf',
+			'host'      => 'deploy.eu2.frbit.com',
+			'username'  => 'fortrabbit1',
+			'password'  => 'fortrabbit123',
 			'key'       => '',
 			'keyphrase' => '',
-			'root'      => '/lragon/www',
+			'root'      => '',
 		),
 
 	),
