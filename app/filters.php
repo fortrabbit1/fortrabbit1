@@ -11,16 +11,28 @@
 |
 */
 
-App::before(function($request)
-{
-	//
+// ..
+App::before(function($request) {
+    if (strtolower($request->header('X-Forwarded-Proto') ?: '') == 'https') {
+        $request->setTrustedProxies([$request->getClientIp()]);
+    }
+    // ..
 });
+// ..
+
+//App::before(function($request)
+//{
+	//
+//});
 
 
 App::after(function($request, $response)
 {
 	//
 });
+
+
+
 
 /*
 |--------------------------------------------------------------------------

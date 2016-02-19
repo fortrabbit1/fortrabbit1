@@ -34,6 +34,7 @@
 	},
 	"scripts": {
 		"post-install-cmd": [
+		 "test -d app/storage || mkdir app/storage",
 			"php artisan clear-compiled",
 			"php artisan optimize"
 		],

@@ -1,1 +1,4 @@
 vendor 
+git add -A
+git commit -m "Initial"
+git push -u fortrabbit master

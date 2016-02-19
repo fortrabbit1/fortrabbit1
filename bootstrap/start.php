@@ -33,10 +33,18 @@ $app = new Illuminate\Foundation\Application;
 //}
 //);
 
-$env = $app->detectEnvironment(function () {
-    return isset($_ENV['OPENSHIFT_PHP_DIR']) ? 'production' : 'local';
-});
+//$env = $app->detectEnvironment(function () {
+  //  return isset($_ENV['OPENSHIFT_PHP_DIR']) ? 'production' : 'local';
+//});
 
+
+$env = $app->detectEnvironment(function() {
+    if (isset($_SERVER['APP_NAME']) && $_SERVER['APP_NAME']) {
+        return 'production';
+    } else {
+        return 'local';
+    }
+});
 
 //$env = $app->detectEnvironment(array(
 //'//local' => array('*.dev', gethostname()),
@@ -83,5 +91,11 @@ require $framework.'/Illuminate/Foundation/start.php';
 | from the actual running of the application and sending responses.
 |
 */
+
+if ($env == 'production') {
+    $logHandler = new \Monolog\Handler\ErrorLogHandler();
+    $logHandler->setFormatter(new \Monolog\Formatter\LineFormatter('%channel%.%level_name%: %message% %context% %extra%'));
+    Log::getMonolog()->pushHandler($logHandler);
+}
 
 return $app;
